@@ -128,14 +128,12 @@ for _ in range(gen_size):
         min_dist = np.linalg.norm(np.array(median_objs[:num_obj]) - ref_point)
         # 遍历种群中的每个个体ind，计算其在目标函数空间中针对当前权重向量vec的加权距离，并与之前计算出的最短距离min_dist比较，得到本次遍历中所有个体所能达到的最小距离值。
         for ind in pop_for_cross:
-            dist = np.linalg.norm(
-                np.array([(ind.objs[k] - ref_point[k]) * vec[k] for k in range(num_obj)]))
+            dist = np.linalg.norm(np.array([(ind.objs[k] - ref_point[k]) * vec[k] for k in range(num_obj)]))
             if dist < min_dist:
                 min_dist = dist
         # 再次遍历种群中的每个个体ind，根据之前得到的最小距离值，计算该个体的拥挤度距离。这里采用了一种计算公式，即将每个个体的拥挤度距离设定为其当前拥挤度距离值加上其到其他个体最小距离的倒数。
         for ind in pop_for_cross:
-            dist = np.linalg.norm(
-                np.array([(ind.objs[k] - ref_point[k]) * vec[k] for k in range(num_obj)]))
+            dist = np.linalg.norm(np.array([(ind.objs[k] - ref_point[k]) * vec[k] for k in range(num_obj)]))
             ind.distance += (min_dist / (dist + min_dist))
 
     # 通过拥挤度距离与分配密度估计来选择进行交叉的个体
